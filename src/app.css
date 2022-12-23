@@ -1,0 +1,84 @@
+/* 
+  Custom CSS reset by Josh W. Comeau
+  source: https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 
+  Custom CSS reset end
+*/
+
+:root {
+	color-scheme: dark;
+
+	--white: hsl(0, 0%, 100%);
+	--svelte-orange: hsl(15, 100%, 55%);
+}
+
+body {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 1.6em;
+	color-scheme: dark;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* main {} */
+
+body > div footer {
+	position: sticky;
+	top: 100vh;
+}
+
+.container {
+	padding: 0 24px;
+	margin: 0 auto;
+	max-width: 1080px;
+}
