@@ -2,6 +2,7 @@
 
 ## Tasks:
 
-- [ ] Create tasks
-- [ ] Edit tasks description
+- [x] Create tasks
+- [ ] Update tasks status
+- [ ] Edit tasks
 - [ ] Delete tasks
