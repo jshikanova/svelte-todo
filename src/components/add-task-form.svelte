@@ -1,28 +1,13 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-
 	import { default as Input } from './input.svelte';
-
-	const dispatch = createEventDispatcher();
-
-	const sayHello = () => {
-		dispatch('message', { text: 'hello' });
-	};
-
-	let newTask = '';
-
-	// $: console.log({ newTask });
 </script>
 
-<form class="add-task-form">
-	<Input
-		className="add-task-form__input"
-		name="new-task"
-		bind:value={newTask}
-		placeholder="Enter your task here"
-	/>
-	<button class="add-task-form__button" on:click={sayHello}>Add task</button>
-</form>
+<div class="container">
+	<form class="add-task-form" method="post" action="?/add">
+		<Input className="add-task-form__input" name="new-task" placeholder="Enter your task here" />
+		<button class="add-task-form__button" formaction="?/add"> Add task </button>
+	</form>
+</div>
 
 <style>
 	.add-task-form {

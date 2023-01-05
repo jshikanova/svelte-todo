@@ -1,11 +1,5 @@
-import { GoogleSpreadsheet } from 'google-spreadsheet';
-
-import {
-	APP_SHEET_ID,
-	APP_GOOGLE_PRIVATE_KEY,
-	APP_GOOGLE_SERVICE_ACCOUNT_EMAIL
-} from '$env/static/private';
-import type { PageServerLoad } from './$types';
+import { getDBSpreadsheet } from '$lib/server';
+import type { Actions, PageServerLoad } from './$types';
 
 type Task = {
 	id: string;
@@ -15,37 +9,14 @@ type Task = {
 };
 
 export const load: PageServerLoad = async () => {
-	const doc = new GoogleSpreadsheet(APP_SHEET_ID);
-
-	await doc.useServiceAccountAuth({
-		private_key: APP_GOOGLE_PRIVATE_KEY.replace(/\\n/gm, '\n'),
-		client_email: APP_GOOGLE_SERVICE_ACCOUNT_EMAIL
-	});
-
-	await doc.loadInfo();
-	const sheet = doc.sheetsByIndex[0];
+	const sheet = await getDBSpreadsheet();
 	const rows = await sheet.getRows();
-
-	// await sheet.addRow({
-	// 	// // * source: https://support.google.com/appsheet/answer/10105828
-	// 	// id: '=LOWER(DEC2HEX(RANDBETWEEN(0; 4294967295); 8))',
-	// 	id: Date.now(),
-	// 	date: Date(),
-	// 	title: 'Buy groceries',
-	// 	description: 'Apples, Bananas, Eggs, Milk',
-	// 	completed: false
-	// });
 
 	const tasks = Object.values(rows)
 		.map(
 			(row) =>
 				Object.fromEntries(
-					Object.entries(row).filter(([key, value]) => {
-						if (key.charAt(0) === '_') return;
-						console.log({ [key]: value });
-
-						return true;
-					})
+					Object.entries(row).filter(([key]) => key.charAt(0) !== '_' && true)
 				) as Task
 		)
 		.map(({ completed, date, ...rest }) => ({
@@ -55,4 +26,19 @@ export const load: PageServerLoad = async () => {
 		}));
 
 	return { tasks };
+};
+
+export const actions: Actions = {
+	add: async ({ request }) => {
+		const data = await request.formData();
+
+		const sheet = await getDBSpreadsheet();
+
+		await sheet.addRow({
+			id: Date.now(),
+			date: Date(),
+			content: data.get('new-task') as string,
+			completed: false
+		});
+	}
 };

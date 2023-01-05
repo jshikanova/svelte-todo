@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { AddTaskForm, TaskList } from '../components';
-
-	const handleMessage = (e: CustomEvent) => console.log(e.detail.text);
-
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	import { AddTaskForm, TaskList } from '../components';
 
+	export let data: PageData;
 	const { tasks } = data;
 </script>
 
@@ -15,7 +12,5 @@
 	<meta name="description" content="Demo made with Svelte by Julia Shikanova" />
 </head>
 
-<div class="container">
-	<AddTaskForm on:message={handleMessage} />
-	<TaskList {tasks} />
-</div>
+<AddTaskForm />
+<TaskList {tasks} />
