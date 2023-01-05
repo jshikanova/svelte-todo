@@ -58,11 +58,16 @@ h6 {
 
 	--white: hsl(0, 0%, 100%);
 	--svelte-orange: hsl(15, 100%, 55%);
+	--grey-100: hsl(0, 0%, 90%);
+	--grey-200: hsl(0, 0%, 70%);
+	--grey-300: hsl(0, 0%, 50%);
+	--grey-400: hsl(0, 0%, 30%);
+	--grey-500: hsl(0, 0%, 10%);
 }
 
 body {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	font-size: 1.6em;
+	font-size: 1.2em;
 	color-scheme: dark;
 }
 
