@@ -11,13 +11,18 @@
 	<ul class="tasks">
 		{#each tasks as { id, date, content, completed }, index}
 			<li class="tasks__item">
-				<input
-					class="tasks__checkbox"
-					type="checkbox"
-					id={`${id}`}
-					name={`${id}`}
-					checked={completed}
-				/>
+				<form method="post" action="?/update-status">
+					<input
+						class="tasks__checkbox"
+						type="checkbox"
+						id={`${id}`}
+						name="task"
+						value="checked"
+						checked={completed}
+						on:change={(props) => props?.currentTarget?.form?.submit()}
+					/>
+					<!-- <input type="hidden" name="id" value={`${id}`} /> -->
+				</form>
 				<label for={`${index}`}>
 					<div>{content}</div>
 					<div class="tasks__date">
