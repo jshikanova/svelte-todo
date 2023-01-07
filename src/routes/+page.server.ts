@@ -40,5 +40,13 @@ export const actions: Actions = {
 			content: data.get('new-task') as string,
 			completed: false
 		});
+	},
+	'update-status': async ({ request }) => {
+		const data = await request.formData();
+
+		// const sheet = await getDBSpreadsheet();
+
+		// console.log({ task: data.task });
+		data.forEach((value, key) => console.log({ value, key }));
 	}
 };
