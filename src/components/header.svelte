@@ -7,7 +7,7 @@
 		<div class="header__wrapper">
 			<div class="header__logo">
 				<CheckSquareIcon size="32" />
-				<div class="header__logo-text">list of tasks</div>
+				<div class="header__logo-text">To-do list</div>
 			</div>
 		</div>
 	</div>
